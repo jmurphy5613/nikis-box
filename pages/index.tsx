@@ -48,7 +48,7 @@ const App: React.FC = () => {
 	return (
 		<div className={styles.container}>
 			<div className={styles.content}>
-				<h1 className={styles.title}>Niki's Box App Selector</h1>
+				<h1 className={styles.title}>{`Niki's Box App Selector`}</h1>
 				<div className={styles.grid}>
 					{gridItems.map((item, index) => (
 						<div key={index} className={styles.card}
