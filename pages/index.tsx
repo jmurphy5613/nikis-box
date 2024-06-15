@@ -39,11 +39,11 @@ const App: React.FC = () => {
 	const [selected, setSelected] = useState(0);
 
 	useEffect(() => {
-		axios.get("https://io.adafruit.com/api/v2/jmurphy5613/feeds/app?x-aio-key=aio_LrJm70oyK1xNQWTfUN5fauxSbd8x").then(e => {
+		axios.get(`https://io.adafruit.com/api/v2/jmurphy5613/feeds/app?x-aio-key=${process.env.NEXT_PUBLIC_API_KEY}`).then(e => {
+			console.log(e)
 			setSelected(JSON.parse(e.data.last_value))
 		})
 	}, [])
-
 
 	return (
 		<div className={styles.container}>
@@ -52,12 +52,12 @@ const App: React.FC = () => {
 				<div className={styles.grid}>
 					{gridItems.map((item, index) => (
 						<div key={index} className={styles.card}
-							style={{ borderColor: selected === (index+1) ? '#39FF14' : '#626262' }}
+							style={{ borderColor: selected === (index + 1) ? '#39FF14' : '#626262' }}
 							onClick={() => {
-								setSelected(index+1)
-								axios.post("https://io.adafruit.com/api/v2/jmurphy5613/feeds/app/data?x-aio-key=aio_LrJm70oyK1xNQWTfUN5fauxSbd8x", {
+								setSelected(index + 1)
+								axios.post(`https://io.adafruit.com/api/v2/jmurphy5613/feeds/app/data?x-aio-key=${process.env.NEXT_PUBLIC_API_KEY}`, {
 									datum: {
-										value: index+1
+										value: index + 1
 									}
 								})
 							}}
